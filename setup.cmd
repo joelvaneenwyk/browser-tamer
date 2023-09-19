@@ -1,9 +1,11 @@
 @echo off
-setlocal
+setlocal EnableDelayedExpansion
 
 set "BROWSER_TAMER_ROOT=%~dp0"
 set "VCPKG_ROOT=%BROWSER_TAMER_ROOT%.build\vcpkg"
 if exist "%VCPKG_ROOT%\bootstrap-vcpkg.bat" goto:$Bootstrap
+
+git -C "%BROWSER_TAMER_ROOT%" submodule update --init --recursive
 git clone https://github.com/Microsoft/vcpkg.git "%VCPKG_ROOT%"
 
 :$Bootstrap
@@ -21,4 +23,4 @@ endlocal & (
     set "BROWSER_TAMER_ROOT=%BROWSER_TAMER_ROOT%"
 )
 
-pwsh -NoProfile -File "%BROWSER_TAMER_ROOT%\local-build.ps1"
+call powershell -NoProfile -File "%BROWSER_TAMER_ROOT%\local-build.ps1"
