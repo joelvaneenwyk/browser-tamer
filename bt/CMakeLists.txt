@@ -4,9 +4,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(APP_NAME bt)
 set(APP_LONG_NAME "Browser Tamer")
-set(APP_URL "https://www.aloneguid.uk/projects/bt/")
-set(APP_GITHUB_URL "https://github.com/aloneguid/bt")
-set(APP_GITHUB_RELEASES_URL "https://github.com/aloneguid/bt/releases")
+set(APP_URL "https://github.com/joelvaneenwyk/browser-tamer")
+set(APP_GITHUB_URL "https://github.com/joelvaneenwyk/browser-tamer")
+set(APP_GITHUB_RELEASES_URL "https://github.com/joelvaneenwyk/browser-tamer/releases")
 
 find_package(fmt CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -30,8 +30,8 @@ target_compile_definitions(${APP_NAME} PRIVATE
     APP_URL="${APP_URL}"
     APP_GITHUB_URL="${APP_GITHUB_URL}"
     APP_GITHUB_RELEASES_URL="${APP_GITHUB_RELEASES_URL}"
-    APP_DOCS_URL="https://aloneguid.github.io/bt/home.html"
-    APP_BROWSER_EXTENSIONS_DOCS_URL="https://aloneguid.github.io/bt/browser-extensions.html")
+    APP_DOCS_URL="https://github.com/joelvaneenwyk/browser-tamer/docs"
+    APP_BROWSER_EXTENSIONS_DOCS_URL="hhttps://github.com/joelvaneenwyk/browser-tamer/extensions")
 
 target_link_libraries(bt
 	libgrey
@@ -49,13 +49,13 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" AND CMAKE_BUILD_TYPE MATCHES "Release")
    target_compile_options(${APP_NAME} PRIVATE /Zi)
 
    # Tell linker to include symbol data
-    set_target_properties(${APP_NAME} PROPERTIES 
+    set_target_properties(${APP_NAME} PROPERTIES
         LINK_FLAGS "/INCREMENTAL:NO /DEBUG /OPT:REF /OPT:ICF"
     )
 
     # Set file name & location
-    set_target_properties(${APP_NAME} PROPERTIES 
-        COMPILE_PDB_NAME ${APP_NAME} 
+    set_target_properties(${APP_NAME} PROPERTIES
+        COMPILE_PDB_NAME ${APP_NAME}
         COMPILE_PDB_OUTPUT_DIR ${CMAKE_BINARY_DIR}
     )
 endif()
@@ -77,7 +77,7 @@ set_property(
     PROPERTY CPACK_START_MENU_SHORTCUTS "Browser Tamer"
 )
 
-set(CPACK_PACKAGE_VENDOR "aloneguid")
+set(CPACK_PACKAGE_VENDOR "joelvaneenwyk")
 set(CPACK_WIX_UPGRADE_GUID "8DC2A015-9B09-489F-92D6-12EA47E22FBB")
 set(CPACK_WIX_PRODUCT_ICON "${PROJECT_SOURCE_DIR}/bt/icon.ico")
 set(CPACK_WIX_UI_BANNER "${PROJECT_SOURCE_DIR}/resources/dist/wix_banner.png")
