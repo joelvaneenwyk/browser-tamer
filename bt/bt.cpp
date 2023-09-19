@@ -9,7 +9,6 @@
 #include "app/config.h"
 #include "app/url_pipeline.h"
 #include "app/setup.h"
-#include "app/update_check.h"
 #include "win32/window.h"
 #include "app/rule_hit_log.h"
 
@@ -133,9 +132,9 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[]) {
                         // show context menu
                         m.show();
                         break;
-                    case NIN_BALLOONUSERCLICK:
-                        bt::ui::url_open(bt::url_payload{APP_GITHUB_RELEASES_URL}, bt::ui::open_method::configured);
-                        break;
+                    //case NIN_BALLOONUSERCLICK:
+                    //    bt::ui::url_open(bt::url_payload{APP_GITHUB_RELEASES_URL}, bt::ui::open_method::configured);
+                    //    break;
                 }
                 break;
             case WM_COMMAND: {
@@ -180,25 +179,11 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[]) {
         1000 * 60 * 60, // ms * sec * min
         KeepAliveTimerProc);
 
-    app_event.connect([&sni](const string& name, const string& arg1, const string& arg2) {
-        if(name == "new_version") {
-            sni.display_notification("New Version", fmt::format("Version {} is now available!", arg1));
-        } else if(name == "no_new_version") {
-            sni.display_notification("Up to Date", "No new version available, you are up to date!");
-        }
-    });
-
     open_on_match_event.connect([&sni](const bt::url_payload& url, const bt::browser_match_result& bmr) {
         if(g_config.get_log_rule_hits()) {
             bt::rule_hit_log::i.write(url, bmr);
         }
     });
-
-    // check for new versions
-    string vn;
-    if(bt::app::should_check_new_version() && bt::app::has_new_version(vn)) {
-        app_event("new_version", vn, "");
-    }
 
     win32app.run();
 

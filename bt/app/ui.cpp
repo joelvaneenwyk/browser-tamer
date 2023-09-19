@@ -28,8 +28,8 @@ namespace bt::ui {
 
     void set_main_instance() {
         is_main_instance = true;
-        t.add_constant("iid", g_config.get_iid());
 
+        t.add_constant("iid", g_config.get_iid());
         t.track(map<string, string> {
             { "event", "start" }
         }, true);
