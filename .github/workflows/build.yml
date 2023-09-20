@@ -38,7 +38,7 @@ jobs:
       shell: powershell
 
     - uses: friendlyanon/setup-vcpkg@v1
-      # seems like the absense of commit hash expects vcpkg submodule, i don't want that
+      # seems like the absence of commit hash expects vcpkg submodule, i don't want that
       with:
         committish: ${{ env.VCPKG_HASH }}
         # set to false to clear any cache in case of build errors
@@ -68,7 +68,7 @@ jobs:
       run: ls -R
       working-directory: build
 
-    # creates "atf" subdir and put the following:
+    # create "atf" sub-directory and put the following:
     # 1. msi installer, renamed after version number
     # 2. zipped .exe
     # 3. version.txt containing version number
