@@ -30,7 +30,7 @@ exit /b
 
     call :Command git add "%~dp0.gitmodules"
     call :Command git commit -m "Removed submodule %sub_module%"
-    call :Command git subtree add --prefix "%new_path%" "%submodule_url%" "%branch%"
+    call :Command git subtree add --prefix "%new_path%" "%submodule_url%" "%branch%" --squash
 exit /b
 
 ::
