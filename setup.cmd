@@ -47,9 +47,9 @@ exit /b
     call :ReplaceSubmodule "common" "https://github.com/aloneguid/common" "master"
     call :ReplaceSubmodule "grey" "https://github.com/aloneguid/grey" "master"
     call :ReplaceSubmodule "bt/ext/lsignal" "https://github.com/cpp11nullptr/lsignal" "master"
-    exit /b
 
     if exist "%VCPKG_ROOT%\bootstrap-vcpkg.bat" goto:$Bootstrap
+    if exist "%VCPKG_ROOT%" rmdir /s /q "%VCPKG_ROOT%"
     call :Command git clone "https://github.com/Microsoft/vcpkg.git" "%VCPKG_ROOT%"
 
     :$Bootstrap
