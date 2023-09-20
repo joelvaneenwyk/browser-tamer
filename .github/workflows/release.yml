@@ -6,41 +6,48 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps:
-      
-      - name: ⬇️ Download artifacts from latest workflow
-        uses: dawidd6/action-download-artifact@v2
+      - uses: actions/checkout@v3
         with:
-          workflow: build.yml
-          workflow_conclusion: success
+          submodules: true
 
-      - name: 🔍 view artifacts to be used
-        run: ls -R
-        working-directory: .
-
-      - name: 🔢 set version environment variable
-        run: |
-          echo "VERSION=$(cat bin/version.txt)" >> "$GITHUB_ENV"
-
-      - name: 🔢 prep release notes
-        run: |
-          grep -m 2 -B 1000 '^## ' bin/release-notes.md | tail -n +3 | head -n -2 > final_notes.md
-          cat bin/instructions.md >> final_notes.md
-          cat final_notes.md
-          
-
-      # https://github.com/softprops/action-gh-release
-      - name: 📦 create release
-        uses: softprops/action-gh-release@v1
-        if: github.ref == 'refs/heads/master'
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v1.13
         with:
-          tag_name: ${{ env.VERSION }}
-          name: ${{ env.VERSION }}
-          discussion_category_name: announcements
-          files: |
-            bin/*.msi
-            bin/*.zip
-            bin/*.sha256.txt
-          body_path: final_notes.md
+          cmake-version: '3.21.x'
+
+      # - name: ⬇️ Download artifacts from latest workflow
+      #   uses: dawidd6/action-download-artifact@v2
+      #   with:
+      #     workflow: build.yml
+      #     workflow_conclusion: success
+
+      # - name: 🔍 view artifacts to be used
+      #   run: ls -R
+      #   working-directory: .
+
+      # - name: 🔢 set version environment variable
+      #   run: |
+      #     echo "VERSION=$(cat bin/version.txt)" >> "$GITHUB_ENV"
+
+      # - name: 🔢 prep release notes
+      #   run: |
+      #     grep -m 2 -B 1000 '^## ' bin/release-notes.md | tail -n +3 | head -n -2 > final_notes.md
+      #     cat bin/instructions.md >> final_notes.md
+      #     cat final_notes.md
+
+      # # https://github.com/softprops/action-gh-release
+      # - name: 📦 create release
+      #   uses: softprops/action-gh-release@v1
+      #   if: github.ref == 'refs/heads/master'
+      #   with:
+      #     tag_name: ${{ env.VERSION }}
+      #     name: ${{ env.VERSION }}
+      #     discussion_category_name: announcements
+      #     files: |
+      #       bin/*.msi
+      #       bin/*.zip
+      #       bin/*.sha256.txt
+      #     body_path: final_notes.md
