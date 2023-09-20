@@ -1,8 +1,7 @@
-.vs/
-.idea/
 out/
+.build/
 build/
 bin/
 obj/
 vcpkg_installed/
-btcheck-cppcheck-build-dir/
+btcheck-cppcheck-build-dir/x
