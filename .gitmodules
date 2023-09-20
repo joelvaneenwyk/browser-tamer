@@ -1,3 +1,0 @@
-[submodule "bt/ext/lsignal"]
-	path = bt/ext/lsignal
-	url = https://github.com/cpp11nullptr/lsignal
