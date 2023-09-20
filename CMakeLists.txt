@@ -7,7 +7,7 @@ if(NOT GLOBAL_VERSION)
     set(GLOBAL_VERSION "0.0.0")
 endif()
 
-project ("btu" VERSION ${GLOBAL_VERSION})
+project ("browser-tamer" VERSION ${GLOBAL_VERSION})
 
 add_compile_definitions(UNICODE) # required for WIN32 API to use correct versions
 

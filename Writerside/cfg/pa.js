@@ -58,14 +58,13 @@
     payload.iid = iid;
 
     function report(eventName, extUrl) {
-        var request = new XMLHttpRequest();
-        request.open("POST", "https://alt.aloneguid.uk/events?key=btdoc", true);
-        request.setRequestHeader("Content-Type", "application/json");
-        payload.e = eventName
-        if(extUrl) payload.x = extUrl
-        request.send(JSON.stringify(payload));
-
-        console.log(payload)
+        // var request = new XMLHttpRequest();
+        // request.open("POST", "https://alt.aloneguid.uk/events?key=btdoc", true);
+        // request.setRequestHeader("Content-Type", "application/json");
+        // payload.e = eventName
+        // if(extUrl) payload.x = extUrl
+        // request.send(JSON.stringify(payload));
+        // console.log(payload)
     }
 
     function handleClick(event) {

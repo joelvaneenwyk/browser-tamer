@@ -18,8 +18,8 @@
     </build-profile>
 
     <footer>
-        <social type="blog" href="https://www.aloneguid.uk/projects/bt/"></social>
-        <link href="https://github.com/aloneguid/bt">GitHub</link>
+        <social type="blog" href="https://www.joelvaneenwyk.com/browser-tamer/"></social>
+        <link href="https://github.com/joelvaneenwyk/browser-tamer">GitHub</link>
     </footer>
 
 </buildprofiles>
