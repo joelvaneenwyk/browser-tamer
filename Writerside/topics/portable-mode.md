@@ -11,6 +11,7 @@
 ## Before you start
 
 Make sure that:
+
 - You have downloaded `.zip` from [GitHub Releases](https://github.com/aloneguid/bt/releases).
 - You have extracted `bt.exe` into a dedicate folder on removable media.
 
